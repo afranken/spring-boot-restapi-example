@@ -10,4 +10,8 @@
     <artifactId>libs</artifactId>
     <packaging>pom</packaging>
 
+    <modules>
+        <module>connector</module>
+    </modules>
+
 </project>
