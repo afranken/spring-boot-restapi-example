@@ -10,7 +10,7 @@ public class ExternalResponse {
   private String name;
 
   @JsonProperty("watchers")
-  private Long watchers;
+  private Long watchers = 0L;
 
   @JsonProperty("owner")
   private Owner owner;
@@ -22,6 +22,12 @@ public class ExternalResponse {
   ExternalResponse(String name, Owner owner) {
     this.name = name;
     this.owner = owner;
+  }
+
+  public ExternalResponse(String name, Owner owner, Long watchers) {
+    this.name = name;
+    this.owner = owner;
+    this.watchers = watchers;
   }
 
   public String getName() {

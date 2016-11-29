@@ -9,9 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.test.autoconfigure.json.JsonTest;
 import org.springframework.boot.test.json.JacksonTester;
+import org.springframework.boot.test.json.JsonContent;
 import org.springframework.boot.test.json.ObjectContent;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.ResourceLoader;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
@@ -19,18 +18,22 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class ExternalResponseTest {
 
   @Autowired
-  private ResourceLoader resourceLoader;
-
-  @Autowired
   private JacksonTester<ExternalResponse> json;
 
   @Test
   public void deserialize_OK() throws IOException {
-    final Resource resource = resourceLoader.getResource(
-        "classpath:/com/github/afranken/boot/restapi/connector/githubResponse_OK.json");
-    final ObjectContent<ExternalResponse> read = json.read(resource);
+    final ObjectContent<ExternalResponse> read = json.read("githubResponse_OK.json");
     assertThat(read).isEqualTo(new ExternalResponse("spring-boot-restapi-example",
         new ExternalResponse.Owner("afranken")));
+  }
+
+  @Test
+  public void serialize_OK() throws IOException {
+    final ExternalResponse response = new ExternalResponse("spring-boot-restapi-example",
+        new ExternalResponse.Owner("afranken"), 0L);
+
+    final JsonContent<ExternalResponse> write = json.write(response);
+    assertThat(write).isStrictlyEqualToJson("serialize_OK.json");
   }
 
   @SpringBootConfiguration
