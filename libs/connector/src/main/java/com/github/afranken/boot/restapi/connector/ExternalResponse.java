@@ -2,16 +2,23 @@ package com.github.afranken.boot.restapi.connector;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import javax.validation.Valid;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ExternalResponse {
-
+  @NotNull
+  @Pattern(regexp = "^[\\w-]+$")
   @JsonProperty("name")
   private String name;
 
+  @Min(0L)
   @JsonProperty("watchers")
-  private Long watchers = 0L;
+  private Long watchers;
 
+  @Valid
   @JsonProperty("owner")
   private Owner owner;
 
@@ -68,6 +75,8 @@ public class ExternalResponse {
 
   public static class Owner {
 
+    @NotNull
+    @Pattern(regexp = "^\\w+$")
     @JsonProperty("login")
     private String login;
 
