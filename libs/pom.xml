@@ -12,6 +12,7 @@
 
     <modules>
         <module>connector</module>
+        <module>resource</module>
     </modules>
 
 </project>
