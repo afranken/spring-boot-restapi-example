@@ -2,13 +2,19 @@
 
 This example illustrates how to build a REST API application with [Spring Boot][1]
 
+It's a simple application that just pulls information from the Github API and exposes it through the `gitinfo` resource.
+
 ####Module explanation:
 
-  `application/` this module is the application aggregator and produces the spring boot application
+  `application/` this is the application aggregator and produces the spring boot application
 
-  `integrationtests/` this module contains the integration tests run against the `application`.
+  `integrationtests/` contains the integration tests run against the `application`.
 
-  `libs/` this module contains the features used by the application. There may be any number of libraries making up an application.
+  `libs/` contains the features used by the application.
+
+  `libs/connector/` contains the service pulling data from the Github API
+
+  `libs/resource/` contains the REST resource `gitinfo`
 
 ####Configuration:
 Each library module exposes it's services through one or more configuration classes which are automatically loaded by spring boot because they are linked from `spring.factories`.
