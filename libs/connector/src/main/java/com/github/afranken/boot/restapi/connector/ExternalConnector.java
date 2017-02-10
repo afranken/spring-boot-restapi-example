@@ -18,6 +18,6 @@ public class ExternalConnector {
   }
 
   public ExternalResponse connect() {
-    return restTemplate.getForObject(properties.getExternalApi(), ExternalResponse.class);
+    return restTemplate.getForObject(properties.getExternalApiUri(), ExternalResponse.class);
   }
 }

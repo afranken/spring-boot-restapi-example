@@ -1,21 +1,26 @@
 package com.github.afranken.boot.restapi.connector;
 
-import org.hibernate.validator.constraints.NotBlank;
+import java.net.URI;
+import javax.validation.constraints.NotNull;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.web.util.UriComponentsBuilder;
 
 @ConfigurationProperties("com.github.afranken.boot.restapi.connector")
-public class ExternalConnectorProperties {
+class ExternalConnectorProperties {
   /**
    * URI of the external API to call
    */
-  @NotBlank
-  private String externalApi = "https://api.github.com/repos/afranken/spring-boot-restapi-example";
+  @NotNull
+  private URI externalApiUri = UriComponentsBuilder
+      .fromUriString("https://api.github.com/repos/afranken/spring-boot-restapi-example")
+      .build()
+      .toUri();
 
-  public String getExternalApi() {
-    return externalApi;
+  public URI getExternalApiUri() {
+    return externalApiUri;
   }
 
-  public void setExternalApi(String externalApi) {
-    this.externalApi = externalApi;
+  public void setExternalApiUri(URI externalApiUri) {
+    this.externalApiUri = externalApiUri;
   }
 }
