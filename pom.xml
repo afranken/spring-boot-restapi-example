@@ -15,6 +15,7 @@
     <modules>
         <module>application</module>
         <module>libs</module>
+        <module>integrationtests</module>
     </modules>
 
     <properties>
