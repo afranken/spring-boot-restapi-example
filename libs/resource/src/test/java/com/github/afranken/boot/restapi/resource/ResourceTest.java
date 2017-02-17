@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Import;
 import org.springframework.core.io.*;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -30,6 +31,9 @@ public class ResourceTest {
 
   @MockBean
   private ExternalConnector connector;
+
+  @MockBean
+  private RestTemplateBuilder restTemplateBuilder;
 
   @Test
   public void testSuccessResponse() throws Exception {
