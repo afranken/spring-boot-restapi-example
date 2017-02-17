@@ -3,8 +3,10 @@ package com.github.afranken.boot.restapi.connector;
 import java.net.URI;
 import javax.validation.constraints.NotNull;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.util.UriComponentsBuilder;
 
+@Validated
 @ConfigurationProperties("com.github.afranken.boot.restapi.connector")
 class ExternalConnectorProperties {
   /**
